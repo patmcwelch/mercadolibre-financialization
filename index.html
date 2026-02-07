@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MercadoLibre's transformation from e-commerce platform to financial services powerhouse">
+    <title>MercadoLibre: From Marketplace to Money Machine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --card-bg: #141414;
+            --card-border: #252525;
+
+            /* Financial data colors */
+            --fintech-green: #10b981;
+            --fintech-glow: rgba(16, 185, 129, 0.15);
+            --commerce-blue: #3b82f6;
+            --commerce-glow: rgba(59, 130, 246, 0.15);
+            --selic-amber: #f59e0b;
+            --selic-glow: rgba(245, 158, 11, 0.15);
+
+            /* Brazil accent colors */
+            --brazil-green: #009b3a;
+            --brazil-yellow: #fedf00;
+
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1a1;
+            --text-tertiary: #737373;
+
+            --radius: 16px;
+            --radius-sm: 12px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 24px;
+            position: relative;
+        }
+
+        .section.compact {
+            min-height: 70vh;
+        }
+
+        .section.medium {
+            min-height: 80vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero-content {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-content.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-viz {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 64px;
+            margin: 48px 0 32px;
+        }
+
+        .pie-chart {
+            text-align: center;
+        }
+
+        .pie-svg {
+            width: 200px;
+            height: 200px;
+            filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.2));
+        }
+
+        .pie-segment {
+            stroke: var(--bg-dark);
+            stroke-width: 2;
+            transition: opacity 0.3s;
+        }
+
+        .pie-segment:hover {
+            opacity: 0.8;
+        }
+
+        .pie-year {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .pie-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 12px;
+        }
+
+        .pie-percent {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .hero-arrow {
+            font-size: 3rem;
+            color: var(--fintech-green);
+            opacity: 0.5;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Card Base */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 48px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-header {
+            margin-bottom: 40px;
+        }
+
+        .card-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .card-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-top: 12px;
+        }
+
+        /* Revenue Evolution Chart */
+        .chart-wrapper {
+            position: relative;
+            width: 100%;
+            height: 400px;
+        }
+
+        .chart-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .area-commerce {
+            fill: url(#commerceGradient);
+            stroke: var(--commerce-blue);
+            stroke-width: 2;
+        }
+
+        .area-fintech {
+            fill: url(#fintechGradient);
+            stroke: var(--fintech-green);
+            stroke-width: 2;
+        }
+
+        .chart-line {
+            fill: none;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .line-selic {
+            stroke: var(--selic-amber);
+        }
+
+        .line-fintech-rev {
+            stroke: var(--fintech-green);
+        }
+
+        .chart-axis {
+            stroke: var(--card-border);
+            stroke-width: 1;
+        }
+
+        .chart-label {
+            fill: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        .chart-dot {
+            fill: var(--fintech-green);
+            stroke: var(--card-bg);
+            stroke-width: 2;
+        }
+
+        .chart-dot.selic {
+            fill: var(--selic-amber);
+        }
+
+        .legend {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 24px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+
+        /* Brazil Context */
+        .dual-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .context-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-sm);
+            padding: 32px;
+        }
+
+        .context-stat {
+            margin-bottom: 24px;
+        }
+
+        .context-stat:last-child {
+            margin-bottom: 0;
+        }
+
+        .context-stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--brazil-green), var(--fintech-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .context-stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .context-text {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Margin Comparison */
+        .margin-comparison {
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
+
+        .margin-bar-item {
+            margin-bottom: 48px;
+        }
+
+        .margin-bar-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .margin-bar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+        }
+
+        .margin-label {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .margin-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .margin-value.commerce {
+            color: var(--commerce-blue);
+        }
+
+        .margin-value.fintech {
+            color: var(--fintech-green);
+        }
+
+        .margin-bar-track {
+            height: 48px;
+            background: var(--card-border);
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .margin-bar-fill {
+            height: 100%;
+            border-radius: 24px;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 20px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: white;
+            width: 0%;
+        }
+
+        .margin-bar-fill.commerce {
+            background: linear-gradient(90deg, var(--commerce-blue), #60a5fa);
+        }
+
+        .margin-bar-fill.fintech {
+            background: linear-gradient(90deg, var(--fintech-green), #34d399);
+        }
+
+        .margin-description {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        /* Key Insights */
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .insight-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-sm);
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .insight-card:hover {
+            border-color: #353535;
+            transform: translateY(-4px);
+        }
+
+        .insight-value {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .insight-value.green {
+            background: linear-gradient(135deg, var(--fintech-green), var(--brazil-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .insight-value.amber {
+            background: linear-gradient(135deg, var(--selic-amber), var(--brazil-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .insight-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .conclusion-text {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            text-align: center;
+            max-width: 800px;
+            margin: 40px auto 0;
+            line-height: 1.8;
+        }
+
+        /* References Section */
+        .references {
+            border-top: 1px solid var(--card-border);
+            padding-top: 32px;
+            margin-top: 48px;
+        }
+
+        .references h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .reference-list {
+            list-style: none;
+        }
+
+        .reference-item {
+            margin-bottom: 16px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .reference-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .reference-link {
+            color: var(--fintech-green);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .reference-link:hover {
+            opacity: 0.7;
+            text-decoration: underline;
+        }
+
+        .methodology-note {
+            margin-top: 24px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid var(--fintech-green);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            line-height: 1.6;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: absolute;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 100;
+            font-size: 0.875rem;
+        }
+
+        .tooltip.visible {
+            opacity: 1;
+        }
+
+        .tooltip-year {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .tooltip-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin: 4px 0;
+        }
+
+        .tooltip-label {
+            color: var(--text-secondary);
+        }
+
+        .tooltip-value {
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-viz {
+                gap: 40px;
+            }
+
+            .pie-svg {
+                width: 160px;
+                height: 160px;
+            }
+
+            .dual-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .insights-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .section {
+                padding: 60px 16px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-viz {
+                flex-direction: column;
+                gap: 32px;
+            }
+
+            .pie-svg {
+                width: 140px;
+                height: 140px;
+            }
+
+            .hero-arrow {
+                transform: rotate(90deg);
+            }
+
+            .card {
+                padding: 32px 24px;
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+            }
+
+            .chart-wrapper {
+                height: 300px;
+            }
+
+            .margin-bar-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+
+            .margin-value {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="section" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-label">MercadoLibre's Business Transformation</div>
+                <h1 class="hero-title">From Marketplace to<br>Money Machine</h1>
+                <div class="hero-viz">
+                    <div class="pie-chart">
+                        <div class="pie-year">2018</div>
+                        <svg class="pie-svg" viewBox="0 0 200 200" id="pie2018"></svg>
+                        <div class="pie-label">
+                            Fintech: <span class="pie-percent">17%</span>
+                        </div>
+                    </div>
+                    <div class="hero-arrow">→</div>
+                    <div class="pie-chart">
+                        <div class="pie-year">2025</div>
+                        <svg class="pie-svg" viewBox="0 0 200 200" id="pie2025"></svg>
+                        <div class="pie-label">
+                            Fintech: <span class="pie-percent">43%</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="hero-subtitle">How Latin America's e-commerce giant evolved into a financial services powerhouse, with fintech now driving nearly half of all revenue</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Revenue Evolution -->
+    <section class="section compact" id="revenue">
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-label">2018 – 2025</div>
+                    <h2 class="card-title">The Great Revenue Shift</h2>
+                    <p class="card-description">Financial services revenue grew from $300M to $11.2B while traditional commerce plateaued</p>
+                </div>
+                <div class="chart-wrapper">
+                    <svg class="chart-svg" id="revenueChart" viewBox="0 0 800 400"></svg>
+                </div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--commerce-blue);"></div>
+                        <span>Commerce Revenue</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--fintech-green);"></div>
+                        <span>Fintech Revenue</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brazil Context -->
+    <section class="section medium" id="brazil">
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-label">The Brazil Factor</div>
+                    <h2 class="card-title">High Interest Rates, High Profits</h2>
+                    <p class="card-description">Brazil's SELIC rate creates lucrative opportunities for financial services</p>
+                </div>
+                <div class="dual-layout">
+                    <div class="chart-wrapper">
+                        <svg class="chart-svg" id="brasilChart" viewBox="0 0 700 400"></svg>
+                    </div>
+                    <div class="context-panel">
+                        <div class="context-stat">
+                            <div class="context-stat-value">68%</div>
+                            <div class="context-stat-label">Fintech revenue from Brazil</div>
+                        </div>
+                        <div class="context-stat">
+                            <div class="context-stat-value">15.0%</div>
+                            <div class="context-stat-label">Current SELIC rate (2025)</div>
+                        </div>
+                        <p class="context-text">Brazil's persistently high interest rates allow MercadoLibre to earn significant spreads on lending, credit products, and money market funds—turning every Mercado Pago balance into a profit center.</p>
+                    </div>
+                </div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--selic-amber);"></div>
+                        <span>SELIC Interest Rate (%)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--fintech-green);"></div>
+                        <span>Brazil Fintech Revenue ($B)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Margin Comparison -->
+    <section class="section compact" id="margins">
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-label">Profitability Analysis</div>
+                    <h2 class="card-title">Why MercadoLibre Pivoted</h2>
+                    <p class="card-description">Financial services deliver 50% higher margins than traditional e-commerce</p>
+                </div>
+                <div class="margin-comparison">
+                    <div class="margin-bar-item">
+                        <div class="margin-bar-header">
+                            <div class="margin-label">Commerce Margin</div>
+                            <div class="margin-value commerce">28%</div>
+                        </div>
+                        <div class="margin-bar-track">
+                            <div class="margin-bar-fill commerce" data-width="28">28%</div>
+                        </div>
+                        <div class="margin-description">Traditional marketplace operations</div>
+                    </div>
+                    <div class="margin-bar-item">
+                        <div class="margin-bar-header">
+                            <div class="margin-label">Fintech Margin</div>
+                            <div class="margin-value fintech">42%</div>
+                        </div>
+                        <div class="margin-bar-track">
+                            <div class="margin-bar-fill fintech" data-width="42">42%</div>
+                        </div>
+                        <div class="margin-description">Financial services & lending</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Insights -->
+    <section class="section compact" id="insights">
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-label">The Bottom Line</div>
+                    <h2 class="card-title">A Complete Transformation</h2>
+                </div>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <div class="insight-value green">30x</div>
+                        <div class="insight-label">Credit portfolio growth<br>2019 → 2024</div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-value green">43%</div>
+                        <div class="insight-label">Revenue now from<br>financial services</div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-value amber">15%</div>
+                        <div class="insight-label">Brazil SELIC rate<br>fueling profits</div>
+                    </div>
+                </div>
+                <p class="conclusion-text">MercadoLibre has fundamentally transformed from a Latin American Amazon into a regional PayPal-meets-Goldman Sachs. By leveraging its massive e-commerce user base and Brazil's high-interest-rate environment, the company now derives more profit from moving money than moving merchandise.</p>
+
+                <!-- References -->
+                <div class="references">
+                    <h3>Data Sources & Methodology</h3>
+                    <ul class="reference-list">
+                        <li class="reference-item">
+                            <strong>MercadoLibre Investor Relations</strong> – Revenue data, segment breakdowns, and financial metrics sourced from quarterly earnings reports (10-Q) and annual reports (10-K).
+                            <a href="https://investor.mercadolibre.com" target="_blank" rel="noopener noreferrer" class="reference-link">investor.mercadolibre.com</a>
+                        </li>
+                        <li class="reference-item">
+                            <strong>Banco Central do Brasil</strong> – SELIC interest rate data from 2018-2025.
+                            <a href="https://www.bcb.gov.br/en" target="_blank" rel="noopener noreferrer" class="reference-link">bcb.gov.br</a>
+                        </li>
+                        <li class="reference-item">
+                            <strong>U.S. Securities and Exchange Commission (SEC)</strong> – Public filings for MercadoLibre, Inc. (Ticker: MELI).
+                            <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001099590" target="_blank" rel="noopener noreferrer" class="reference-link">sec.gov</a>
+                        </li>
+                        <li class="reference-item">
+                            <strong>Credit Portfolio Data</strong> – Total credit book value growth calculated from disclosed loan portfolio values in quarterly investor presentations (2019-2024).
+                        </li>
+                    </ul>
+                    <div class="methodology-note">
+                        <strong>Methodology:</strong> All revenue figures are presented in USD billions. Profit margin percentages represent segment operating margins averaged across 2024 fiscal year. Brazil fintech revenue allocation (68%) estimated from regional revenue disclosures in investor materials. 2025 projections extrapolated from Q3 2024 run rates. Data last updated: January 2026.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="tooltip" id="tooltip">
+        <div class="tooltip-year"></div>
+        <div class="tooltip-content"></div>
+    </div>
+
+    <script>
+        // Data
+        const revenueData = [
+            { year: 2018, commerce: 1.44, fintech: 0.30 },
+            { year: 2019, commerce: 2.11, fintech: 0.43 },
+            { year: 2020, commerce: 3.97, fintech: 0.82 },
+            { year: 2021, commerce: 5.63, fintech: 2.09 },
+            { year: 2022, commerce: 8.60, fintech: 3.96 },
+            { year: 2023, commerce: 10.5, fintech: 6.96 },
+            { year: 2024, commerce: 12.8, fintech: 9.62 },
+            { year: 2025, commerce: 14.0, fintech: 11.2 }
+        ];
+
+        const brasilSELIC = [
+            { year: 2018, rate: 6.5, fintechRev: 0.10 },
+            { year: 2019, rate: 4.5, fintechRev: 0.15 },
+            { year: 2020, rate: 2.0, fintechRev: 0.28 },
+            { year: 2021, rate: 9.25, fintechRev: 0.95 },
+            { year: 2022, rate: 13.75, fintechRev: 2.10 },
+            { year: 2023, rate: 11.75, fintechRev: 3.45 },
+            { year: 2024, rate: 12.25, fintechRev: 5.20 },
+            { year: 2025, rate: 15.0, fintechRev: 6.80 }
+        ];
+
+        // Utility: Animate number counter
+        const animateCounter = (element, start, end, duration, suffix = '%') => {
+            const startTime = performance.now();
+            const update = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const current = Math.round(start + (end - start) * easeOut);
+                element.textContent = current + suffix;
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            };
+            requestAnimationFrame(update);
+        };
+
+        // Utility: Create SVG path for area chart
+        const createAreaPath = (data, xScale, yScale, key, offsetKey = null) => {
+            const width = 700;
+            const height = 300;
+            const padding = { top: 20, right: 40, bottom: 40, left: 60 };
+
+            let path = `M ${padding.left} ${height - padding.bottom} `;
+
+            data.forEach((d, i) => {
+                const x = padding.left + (i / (data.length - 1)) * (width - padding.left - padding.right);
+                const baseY = offsetKey
+                    ? height - padding.bottom - (yScale * (d[key] + d[offsetKey]))
+                    : height - padding.bottom - (yScale * d[key]);
+                path += `L ${x} ${baseY} `;
+            });
+
+            path += `L ${width - padding.right} ${height - padding.bottom} `;
+            path += `L ${padding.left} ${height - padding.bottom} Z`;
+
+            return path;
+        };
+
+        // Utility: Create SVG path for line chart
+        const createLinePath = (data, xScale, yScale, key) => {
+            const width = 700;
+            const height = 300;
+            const padding = { top: 20, right: 60, bottom: 40, left: 60 };
+
+            let path = '';
+
+            data.forEach((d, i) => {
+                const x = padding.left + (i / (data.length - 1)) * (width - padding.left - padding.right);
+                const y = padding.top + (1 - (d[key] / yScale)) * (height - padding.top - padding.bottom);
+                path += (i === 0 ? 'M ' : 'L ') + `${x} ${y} `;
+            });
+
+            return path;
+        };
+
+        // Draw Revenue Evolution Chart
+        const drawRevenueChart = () => {
+            const svg = document.getElementById('revenueChart');
+            const width = 800;
+            const height = 400;
+            const padding = { top: 30, right: 50, bottom: 50, left: 70 };
+
+            // Calculate scales
+            const maxRevenue = Math.max(...revenueData.map(d => d.commerce + d.fintech));
+            const yScale = (height - padding.top - padding.bottom) / maxRevenue;
+
+            // Defs for gradients
+            let svgContent = `
+                <defs>
+                    <linearGradient id="commerceGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:${getComputedStyle(document.documentElement).getPropertyValue('--commerce-blue')};stop-opacity:0.3" />
+                        <stop offset="100%" style="stop-color:${getComputedStyle(document.documentElement).getPropertyValue('--commerce-blue')};stop-opacity:0.05" />
+                    </linearGradient>
+                    <linearGradient id="fintechGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:${getComputedStyle(document.documentElement).getPropertyValue('--fintech-green')};stop-opacity:0.3" />
+                        <stop offset="100%" style="stop-color:${getComputedStyle(document.documentElement).getPropertyValue('--fintech-green')};stop-opacity:0.05" />
+                    </linearGradient>
+                </defs>
+            `;
+
+            // Y-axis
+            svgContent += `<line x1="${padding.left}" y1="${padding.top}" x2="${padding.left}" y2="${height - padding.bottom}" class="chart-axis" />`;
+
+            // X-axis
+            svgContent += `<line x1="${padding.left}" y1="${height - padding.bottom}" x2="${width - padding.right}" y2="${height - padding.bottom}" class="chart-axis" />`;
+
+            // Y-axis labels
+            for (let i = 0; i <= 5; i++) {
+                const value = (maxRevenue / 5) * i;
+                const y = height - padding.bottom - (yScale * value);
+                svgContent += `<text x="${padding.left - 10}" y="${y + 4}" text-anchor="end" class="chart-label">$${value.toFixed(0)}B</text>`;
+                svgContent += `<line x1="${padding.left}" y1="${y}" x2="${width - padding.right}" y2="${y}" stroke="var(--card-border)" stroke-width="0.5" opacity="0.3" />`;
+            }
+
+            // X-axis labels
+            revenueData.forEach((d, i) => {
+                const x = padding.left + (i / (revenueData.length - 1)) * (width - padding.left - padding.right);
+                svgContent += `<text x="${x}" y="${height - padding.bottom + 25}" text-anchor="middle" class="chart-label">${d.year}</text>`;
+            });
+
+            // Draw commerce area
+            let commercePath = `M ${padding.left} ${height - padding.bottom} `;
+            revenueData.forEach((d, i) => {
+                const x = padding.left + (i / (revenueData.length - 1)) * (width - padding.left - padding.right);
+                const y = height - padding.bottom - (yScale * d.commerce);
+                commercePath += `L ${x} ${y} `;
+            });
+            commercePath += `L ${width - padding.right} ${height - padding.bottom} Z`;
+
+            svgContent += `<path d="${commercePath}" class="area-commerce" style="stroke-dasharray: 3000; stroke-dashoffset: 3000;">
+                <animate attributeName="stroke-dashoffset" from="3000" to="0" dur="2s" fill="freeze" />
+            </path>`;
+
+            // Draw fintech area (stacked)
+            let fintechPath = `M ${padding.left} ${height - padding.bottom - (yScale * revenueData[0].commerce)} `;
+            revenueData.forEach((d, i) => {
+                const x = padding.left + (i / (revenueData.length - 1)) * (width - padding.left - padding.right);
+                const y = height - padding.bottom - (yScale * (d.commerce + d.fintech));
+                fintechPath += `L ${x} ${y} `;
+            });
+            for (let i = revenueData.length - 1; i >= 0; i--) {
+                const d = revenueData[i];
+                const x = padding.left + (i / (revenueData.length - 1)) * (width - padding.left - padding.right);
+                const y = height - padding.bottom - (yScale * d.commerce);
+                fintechPath += `L ${x} ${y} `;
+            }
+            fintechPath += 'Z';
+
+            svgContent += `<path d="${fintechPath}" class="area-fintech" style="stroke-dasharray: 3000; stroke-dashoffset: 3000;">
+                <animate attributeName="stroke-dashoffset" from="3000" to="0" dur="2s" begin="0.3s" fill="freeze" />
+            </path>`;
+
+            svg.innerHTML = svgContent;
+        };
+
+        // Draw Brasil SELIC Chart
+        const drawBrasilChart = () => {
+            const svg = document.getElementById('brasilChart');
+            const width = 700;
+            const height = 400;
+            const padding = { top: 30, right: 70, bottom: 50, left: 70 };
+
+            const maxRate = 16;
+            const maxRevenue = 8;
+
+            let svgContent = '';
+
+            // Axes
+            svgContent += `<line x1="${padding.left}" y1="${padding.top}" x2="${padding.left}" y2="${height - padding.bottom}" class="chart-axis" />`;
+            svgContent += `<line x1="${padding.left}" y1="${height - padding.bottom}" x2="${width - padding.right}" y2="${height - padding.bottom}" class="chart-axis" />`;
+
+            // Y-axis labels (left - SELIC rate)
+            for (let i = 0; i <= 4; i++) {
+                const value = (maxRate / 4) * i;
+                const y = height - padding.bottom - ((value / maxRate) * (height - padding.top - padding.bottom));
+                svgContent += `<text x="${padding.left - 10}" y="${y + 4}" text-anchor="end" class="chart-label" fill="var(--selic-amber)">${value.toFixed(0)}%</text>`;
+            }
+
+            // Y-axis labels (right - Revenue)
+            for (let i = 0; i <= 4; i++) {
+                const value = (maxRevenue / 4) * i;
+                const y = height - padding.bottom - ((value / maxRevenue) * (height - padding.top - padding.bottom));
+                svgContent += `<text x="${width - padding.right + 10}" y="${y + 4}" text-anchor="start" class="chart-label" fill="var(--fintech-green)">$${value.toFixed(0)}B</text>`;
+            }
+
+            // X-axis labels
+            brasilSELIC.forEach((d, i) => {
+                const x = padding.left + (i / (brasilSELIC.length - 1)) * (width - padding.left - padding.right);
+                svgContent += `<text x="${x}" y="${height - padding.bottom + 25}" text-anchor="middle" class="chart-label">${d.year}</text>`;
+            });
+
+            // Draw SELIC line
+            let selicPath = '';
+            brasilSELIC.forEach((d, i) => {
+                const x = padding.left + (i / (brasilSELIC.length - 1)) * (width - padding.left - padding.right);
+                const y = height - padding.bottom - ((d.rate / maxRate) * (height - padding.top - padding.bottom));
+                selicPath += (i === 0 ? 'M ' : 'L ') + `${x} ${y} `;
+            });
+            svgContent += `<path d="${selicPath}" class="chart-line line-selic" style="stroke-dasharray: 2000; stroke-dashoffset: 2000;">
+                <animate attributeName="stroke-dashoffset" from="2000" to="0" dur="2s" fill="freeze" />
+            </path>`;
+
+            // Draw fintech revenue line
+            let fintechPath = '';
+            brasilSELIC.forEach((d, i) => {
+                const x = padding.left + (i / (brasilSELIC.length - 1)) * (width - padding.left - padding.right);
+                const y = height - padding.bottom - ((d.fintechRev / maxRevenue) * (height - padding.top - padding.bottom));
+                fintechPath += (i === 0 ? 'M ' : 'L ') + `${x} ${y} `;
+            });
+            svgContent += `<path d="${fintechPath}" class="chart-line line-fintech-rev" style="stroke-dasharray: 2000; stroke-dashoffset: 2000;">
+                <animate attributeName="stroke-dashoffset" from="2000" to="0" dur="2s" begin="0.3s" fill="freeze" />
+            </path>`;
+
+            // Draw dots
+            brasilSELIC.forEach((d, i) => {
+                const x = padding.left + (i / (brasilSELIC.length - 1)) * (width - padding.left - padding.right);
+                const yRate = height - padding.bottom - ((d.rate / maxRate) * (height - padding.top - padding.bottom));
+                const yRev = height - padding.bottom - ((d.fintechRev / maxRevenue) * (height - padding.top - padding.bottom));
+
+                svgContent += `<circle cx="${x}" cy="${yRate}" r="5" class="chart-dot selic" opacity="0">
+                    <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="${2 + i * 0.1}s" fill="freeze" />
+                </circle>`;
+
+                svgContent += `<circle cx="${x}" cy="${yRev}" r="5" class="chart-dot" opacity="0">
+                    <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="${2.3 + i * 0.1}s" fill="freeze" />
+                </circle>`;
+            });
+
+            svg.innerHTML = svgContent;
+        };
+
+        // Draw pie charts
+        const drawPieChart = (svgId, fintechPercent) => {
+            const svg = document.getElementById(svgId);
+            const commercePercent = 100 - fintechPercent;
+            const radius = 90;
+            const cx = 100;
+            const cy = 100;
+
+            // Calculate pie slice paths
+            const fintechAngle = (fintechPercent / 100) * 360;
+            const commerceAngle = 360 - fintechAngle;
+
+            // Start at top (12 o'clock)
+            const startX = cx;
+            const startY = cy - radius;
+
+            // Fintech slice (green) - clockwise from top
+            const fintechEndAngle = fintechAngle * Math.PI / 180;
+            const fintechEndX = cx + radius * Math.sin(fintechEndAngle);
+            const fintechEndY = cy - radius * Math.cos(fintechEndAngle);
+            const fintechLargeArc = fintechAngle > 180 ? 1 : 0;
+
+            const fintechPath = `M ${cx} ${cy} L ${startX} ${startY} A ${radius} ${radius} 0 ${fintechLargeArc} 1 ${fintechEndX} ${fintechEndY} Z`;
+
+            // Commerce slice (blue) - rest of circle
+            const commerceLargeArc = commerceAngle > 180 ? 1 : 0;
+            const commercePath = `M ${cx} ${cy} L ${fintechEndX} ${fintechEndY} A ${radius} ${radius} 0 ${commerceLargeArc} 1 ${startX} ${startY} Z`;
+
+            svg.innerHTML = `
+                <path d="${commercePath}" fill="var(--commerce-blue)" class="pie-segment" opacity="0">
+                    <animate attributeName="opacity" from="0" to="1" dur="0.8s" fill="freeze" />
+                </path>
+                <path d="${fintechPath}" fill="var(--fintech-green)" class="pie-segment" opacity="0">
+                    <animate attributeName="opacity" from="0" to="1" dur="0.8s" begin="0.3s" fill="freeze" />
+                </path>
+            `;
+        };
+
+        // Animate horizontal bars
+        const animateBars = () => {
+            const bars = document.querySelectorAll('.margin-bar-fill');
+            bars.forEach((bar, index) => {
+                const targetWidth = parseInt(bar.getAttribute('data-width'));
+                setTimeout(() => {
+                    bar.style.width = targetWidth + '%';
+                }, index * 300);
+            });
+        };
+
+        // Intersection Observer
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '-10% 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const section = entry.target;
+                    section.querySelectorAll('.hero-content, .card').forEach(el => {
+                        el.classList.add('animate');
+                    });
+
+                    // Hero pie charts
+                    if (section.id === 'hero') {
+                        setTimeout(() => {
+                            drawPieChart('pie2018', 17);
+                            drawPieChart('pie2025', 43);
+                        }, 800);
+                    }
+
+                    // Revenue chart
+                    if (section.id === 'revenue') {
+                        setTimeout(() => drawRevenueChart(), 500);
+                    }
+
+                    // Brasil chart
+                    if (section.id === 'brazil') {
+                        setTimeout(() => drawBrasilChart(), 500);
+                    }
+
+                    // Margin bars
+                    if (section.id === 'margins') {
+                        setTimeout(() => animateBars(), 600);
+                    }
+
+                    observer.unobserve(section);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Trigger hero animation immediately
+            document.querySelector('#hero .hero-content').classList.add('animate');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Thumbnails
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Local environment
+.env
+.env.local
+CLAUDE.local.md
+
+# Internal documentation (contains PII - keep local only)
+PLAN.md
+SESSION_NOTES.md
+DEPLOY.md
+*_INTERNAL.md
